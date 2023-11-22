@@ -1,0 +1,71 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Register
+        style. 
+            body{
+                display: flex;
+                justify-content : center;
+                align-items: center ;
+                font-size:18px;
+            } 
+            .gg { width: 50%;
+                  padding: 8px 8px;
+                  border: 1px solid black;
+                  }
+            #email{
+                margin-left:145px;
+            }
+            #nom{
+                margin-left:155px;
+            }
+            #pass{
+                margin-left:95px;
+            }
+            #repass{
+                margin-left:15px;
+            }
+            #submit{
+               width: 53.5%;
+               padding: 6px 6px;
+               margin-left:200px;
+               color : white;
+               background-color: #4777bf;
+               border: 1px solid black;
+               font-size:18px;
+            }
+            p.enre { text-align:center ;
+             }
+            .container1 { background-color: #d9d9d9;
+                          width : 27%;
+                          padding-left: 20px;
+                          padding-bottom: 20px;
+                          padding-right: 20px;
+                          margin-top: 15%;
+            }
+    body 
+        .container1
+            p.enre Enregistrement
+            br
+            .container2
+                form(action='/users' method='POST')
+                    p
+                    | Nom:
+                    input(type='text',id='nom',class="gg" ,name='nom', value='')
+                    br
+                    br
+                    | Email: 
+                    input(type='text',id='email',class="gg" ,name='email', value='')
+                    br
+                    br
+                    | Mot de passe:          
+                    input(type='password',id='pass', class="gg",name='password', value='')
+                    br
+                    br
+                    | Confirmer Mot de passe: 
+                    input(type='password',id='repass', class="gg",name='repassword', value='')
+                    br
+                    br
+                    input(type='submit', id="submit" ,value='Register' ,onclick='redirectTo()')
