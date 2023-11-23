@@ -1,5 +1,6 @@
 const User = require('.././models/User');
 const bcrypt = require('bcrypt');
+const auth = require('.././middlewares/auth');
 
 async function addUser(req, res){
     try{
@@ -29,4 +30,32 @@ async function addUser(req, res){
     }
 }
 
-module.exports={addUser};
+
+async function login(req,res){
+    try {
+        const {email,password}=req.body;
+        const data = {
+            email: email,
+            password: password
+        }
+        const user = await User.findOne({email: email});
+        if(user){
+            validPass = await bcrypt.compareSync(password , user.password );
+            if(!validPass){
+                res.send('Invalid email or password!');
+            }else{
+                res.send('Connected!');
+                console.log('Connected!');
+                auth(data.email);
+                console.log(req.session);
+            }
+        }else{
+            res.send('Invalid email or password!');
+        }
+    } catch (error) {
+        res.send(error);
+    }
+}
+
+
+module.exports={addUser,login};

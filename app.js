@@ -2,7 +2,11 @@ const express = require('express');
 const app = express();
 const mongoose = require("mongoose");
 const userRoutes = require('./routes/usersRouter');
+const questionRoutes = require('./routes/questionRouter');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt');
+const session = require('express-session');
+const sess = require('./middlewares/auth');
 app.use(express.json());
 
 mongoose.connect("mongodb://127.0.0.1:27017/forum")
@@ -14,6 +18,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/forum")
 })*/
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/users',userRoutes);
+app.use('/questions',questionRoutes);
 
 //app.post('/users', async (req, res) => {
   //  try {
@@ -33,6 +38,15 @@ app.use('/users',userRoutes);
     //}
   //});
 
+/*app.use(session({
+  secret: bcrypt.hash(req.u,10),
+  resave:false,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000},
+}))
+
+app.use('/session', sess);
+*/
 app.set('view engine','pug');
 app.get('/register',(req,res)=>{
     res.render('register');
@@ -41,5 +55,11 @@ app.get('/register',(req,res)=>{
 app.get('/login',(req,res)=>{
     res.render('login');
 })
+app.get('/home',(req,res)=>{
+  res.render('home');
+})
+app.get('/questions',(req,res)=>{
+  res.render('question');
+})
 
-app.listen(3000, () => console.log(`Example app listening on port 3000!`))
+app.listen(3000, () => console.log(`App listening on port 3000!`));

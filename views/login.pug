@@ -3,7 +3,7 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Register
+        title Login
         style. 
             body{
                 display: flex;
@@ -43,14 +43,18 @@ html(lang="en")
             }
     body 
         .container1
-            form(action='/users',method='POST')
-            p
-            | Email: 
-            input(type='text',id='email',class="gg" ,name='email', value='')
-            br
-            br
-            | Mot de passe:          
-            input(type='password',id='pass', class="gg",name='mdp', value='')
-            br
-            br
-            input(type='submit', id="submit" ,value='Login')
+            form(action='/users/login' method='POST')
+                p
+                | Email: 
+                input(type='text',id='email',class="gg" ,name='email', value='')
+                br
+                br
+                | Mot de passe:          
+                input(type='password',id='pass', class="gg",name='password', value='')
+                br
+                br
+                script.     
+                        function onclick(){
+                            window.location.href='/login';
+                        }
+                input(type='submit', id="submit" ,value='Login' ,onclick='onclick()')

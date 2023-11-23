@@ -1,0 +1,57 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Home
+        style.      
+                input[type=text]{
+                    background-color: #d9d9d9;
+                }    
+                .container1{
+                    background-color: #d9d9d9;
+                     width : 35%;
+                    margin-left:40%;
+                    margin-top:15%;
+                    padding-top: 20px;
+                    padding-bottom: 20px;
+                    paading-left: 20px;
+                }
+                #log{
+                    margin-left: 81%;
+                    text-decoration: none;
+                    color:#4777bf;
+                    font-size: 19px;
+                    }
+                #quest{
+                    width: 90%;
+                    padding: 17px 10px;
+                    margin-top:10px;
+                    margin-left: 20px;
+                }
+                #btn{
+                    margin-top:10px;
+                    margin-left: 78%;
+                    width: 19%;
+                    color: white;
+                    background-color: #4777bf;
+                    border: none;
+                    padding: 8px 8px;
+                    font-size: 22px;
+                }
+                .container2{
+                    border: 1px solid black;
+                    margin-top:10px;
+                    width: 93%;
+                    margin-left:20px;
+                }
+    body 
+        .container1
+            a(href='',id='log') Logout/login
+            br
+            form(action='/users/login' method='POST')
+                input(type='text',id='quest',placeholder='Votre question ici ....')
+                br
+                input(type='submit',id='btn',value='Envoyer')
+            .container2 
+                p ${question}
