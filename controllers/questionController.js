@@ -14,12 +14,14 @@ async function getQuestions(req,res){
 async function addQuestion(req,res){
     try {
         const question = req.body;
-        //console.log(req.body);
-        var date = new Date();
-        //.toJSON().substring(0,10)
-        const newQuestion = await Question.create({date:date,nom:question.nom,email:question.email,description:question.description});
-        await newQuestion.save();
-        console.log('New question created!');
+        //if(question.description || question.email){
+          //  console.error();
+        //}else{
+            var date = new Date();
+            const newQuestion = await Question.create({date:date,nom:question.nom,email:question.email,description:question.description});
+            await newQuestion.save();
+            console.log('New question created!');
+        //}
     } catch (error) {
         console.log(error);
     }

@@ -3,6 +3,100 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Question
-    body   
-        p salah
+        title Home
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
+        style.      
+                input[type=text]{
+                    background-color: #d9d9d9;
+                }    
+                .container1{
+                    background-color: #d9d9d9;
+                     width : 35%;
+                    margin-left:40%;
+                    margin-top:15%;
+                    padding-top: 20px;
+                    padding-bottom: 20px;
+                    paading-left: 20px;
+                }
+                #log{
+                    margin-left: 2%;
+                    text-decoration: none;
+                    color:#4777bf;
+                    font-size: 17px;
+                    }
+                #home{
+                    margin-left: 72%;
+                    font-size: 17px;
+                }
+                #quest{
+                    width: 86%;
+                    padding: 17px 10px;
+                    margin-top:10px;
+                    margin-left: 45px;
+                    padding-left:15px;
+                }
+                #btn{
+                    margin-top:10px;
+                    margin-left: 74%;
+                    width: 19%;
+                    color: white;
+                    background-color: #4777bf;
+                    border: none;
+                    padding: 2px 2px;
+                    font-size: 22px;
+                    margin-bottom: 10px;
+                }
+                .container{
+                    border: 1px solid black;
+                    width:86%;
+                    padding-bottom: auto;
+                }
+                .container2{
+                    border: 1px solid black;
+                    margin-top:10px;
+                    width: 100%;
+                    margin-left:0px;
+                    padding-bottom:0%;
+                }
+                .desca{
+                    //border: 1px solid black;
+                    //width: 87%;
+                    margin-left:50px;
+                    //padding: 17px 10px;
+                    margin-bottom:5px;
+                }
+                .description{
+                    border: 1px solid black;
+                    width: 87%;
+                    margin-left:50px;
+                    padding: 17px 10px;
+                    margin-bottom:5px;
+                }
+                .date{
+                    
+                }
+                .reponses{
+                    margin-left:84%;
+                }
+    body 
+        .container1
+            a(href='/home',id='home') Home
+            a(href='/login',id='log') Logout/Login
+            br
+            p(class='desca')= `${question.description}`
+            form(action='/questions' method='POST')
+                input(type='text',id='quest',name='description',placeholder='Votre reponse ici ....')
+                br
+                script. 
+                    function refreshPage(){
+                        setTimeout(function() {
+                            window.location.reload();
+                            }, 100);
+                    }
+                input(type='submit',id='btn',value='Envoyer',onclick='refreshPage()')
+            .container
+                .container2
+                    //each reponse in reponses
+                        p(class='date')=`${reponse.date.toJSON().substring(0,10)}          ${question.email}`
+                        p(class='description')= `${reponse.description}`
+                    

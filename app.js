@@ -53,8 +53,12 @@ app.get('/home',async (req,res)=>{
   const questions = await Question.find().sort({ createdAt: 'desc' });
   res.render('home',{questions:questions});
 })
-app.get('/questions',(req,res)=>{
-  res.render('question');
+app.get('/questions',async (req,res)=>{
+  const description = req.body.description;
+  console.log(req.body);
+  const question = await Question.find({description:description}).sort({ createdAt: 'desc' });
+  const reponses = question.reponses;
+  res.render('question',{question:question,reponses:reponses});
 })
 
 app.listen(3000, () => console.log(`App listening on port 3000!`));

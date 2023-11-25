@@ -5,7 +5,11 @@ const Question = mongoose.model('question',new mongoose.Schema({
     nom: String,
     email: String,
     description: String,
-    reponsesLink: {type:String,required:false}
+    reponses: {
+        date : Date,
+        email: String,
+        description: String
+    }
 }));
 
 module.exports=Question;
