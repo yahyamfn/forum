@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const {getQuestions,addQuestion}=require('.././controllers/questionController');
+const {getQuestions,addQuestion,deleteQuestion}=require('.././controllers/questionController');
 
 router.get('/get',getQuestions);
-router.post('/add',addQuestion);
+router.post('/',addQuestion);
+router.delete('/delete',deleteQuestion);
 
 module.exports=router;

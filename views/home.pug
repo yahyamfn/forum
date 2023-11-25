@@ -4,6 +4,7 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Home
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
         style.      
                 input[type=text]{
                     background-color: #d9d9d9;
@@ -18,40 +19,75 @@ html(lang="en")
                     paading-left: 20px;
                 }
                 #log{
-                    margin-left: 81%;
+                    margin-left: 75%;
                     text-decoration: none;
                     color:#4777bf;
                     font-size: 19px;
                     }
                 #quest{
-                    width: 90%;
+                    width: 86%;
                     padding: 17px 10px;
                     margin-top:10px;
-                    margin-left: 20px;
+                    margin-left: 45px;
+                    padding-left:15px;
                 }
                 #btn{
                     margin-top:10px;
-                    margin-left: 78%;
+                    margin-left: 74%;
                     width: 19%;
                     color: white;
                     background-color: #4777bf;
                     border: none;
-                    padding: 8px 8px;
+                    padding: 2px 2px;
                     font-size: 22px;
+                    margin-bottom: 10px;
+                }
+                .container{
+                    border: 1px solid black;
+                    width:86%;
+                    padding-bottom: auto;
                 }
                 .container2{
                     border: 1px solid black;
                     margin-top:10px;
-                    width: 93%;
-                    margin-left:20px;
+                    width: 100%;
+                    margin-left:0px;
+                    padding-bottom:0%;
+                }
+                .description{
+                    border: 1px solid black;
+                    width: 87%;
+                    margin-left:50px;
+                    padding: 17px 10px;
+                    margin-bottom:5px;
+                }
+                .date{
+                    
+                }
+                .reponses{
+                    margin-left:84%;
                 }
     body 
         .container1
-            a(href='',id='log') Logout/login
+            a(href='',id='log') Logout/Login
             br
-            form(action='/users/login' method='POST')
-                input(type='text',id='quest',placeholder='Votre question ici ....')
+            form(action='/questions' method='POST')
+                input(type='text',id='quest',name='description',placeholder='Votre question ici ....')
                 br
-                input(type='submit',id='btn',value='Envoyer')
-            .container2 
-                p ${question}
+                script. 
+                    function reloadd(){
+                        location.reload();
+                    }
+                input(type='submit',id='btn',value='Envoyer',onclick='reloadd()')
+            .container
+                .container2
+                    each question in questions
+                        p(class='date')=`${question.date.toJSON().substring(0,10)}          ${question.email}`
+                        p(class='description')= `${question.description}`
+                        a(href="" class="reponses" id="reponses") Reponses
+                        script.
+                            document.addEventListener('DOMContentLoaded', function() {
+                            var reponses = document.getElementById('reponses');
+                            reponses.href = ${question.reponsesLink}; 
+                            });
+                    

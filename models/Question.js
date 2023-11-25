@@ -4,7 +4,7 @@ const Question = mongoose.model('question',new mongoose.Schema({
     date : Date,
     nom: String,
     email: String,
-    question: String,
+    description: String,
     reponsesLink: {type:String,required:false}
 }));
 

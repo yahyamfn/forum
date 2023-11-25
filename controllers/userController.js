@@ -1,6 +1,17 @@
 const User = require('.././models/User');
 const bcrypt = require('bcrypt');
 const auth = require('.././middlewares/auth');
+const express = require('express');
+const app= express();
+const session = require('express-session');
+
+app.use(
+    session({
+      secret: "secret",
+      resave: false,
+      saveUninitialized: true,
+    })
+  );
 
 async function addUser(req, res){
     try{
@@ -23,7 +34,7 @@ async function addUser(req, res){
             const cryptedPass = await bcrypt.hash(password,10);
             usr.password = cryptedPass;
             await usr.save();
-            res.send('Saved!');
+            window.location.href='/login';
         }
     }catch(err){
         res.send(err)
@@ -44,10 +55,11 @@ async function login(req,res){
             if(!validPass){
                 res.send('Invalid email or password!');
             }else{
-                res.send('Connected!');
                 console.log('Connected!');
-                auth(data.email);
-                console.log(req.session);
+                console.log(user);
+                //req.session.user =user;
+                //console.log(req.session.user);
+                res.redirect('/home');
             }
         }else{
             res.send('Invalid email or password!');

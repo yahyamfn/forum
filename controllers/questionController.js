@@ -3,7 +3,7 @@ const Question = require('.././models/Question');
 async function getQuestions(req,res){
     try{
         const questions = await Question.find();
-        res.send(questions);
+        res.render('/home', { questions: questions });
     }catch(error){
         console.log(error);
     }
@@ -11,16 +11,29 @@ async function getQuestions(req,res){
 }
 
 
-
 async function addQuestion(req,res){
     try {
-        const {date,nom,email,question} = req.body;
-        const newQuestion = await Question.create({date:date,nom:nom,email:email,question:question});
+        const question = req.body;
+        //console.log(req.body);
+        var date = new Date();
+        //.toJSON().substring(0,10)
+        const newQuestion = await Question.create({date:date,nom:question.nom,email:question.email,description:question.description});
         await newQuestion.save();
-        res.send('New question created!');
+        console.log('New question created!');
     } catch (error) {
         console.log(error);
     }
 }
 
-module.exports={getQuestions,addQuestion};
+
+async function deleteQuestion(req,res){
+    try {
+        const {}=req.body;
+        await Question.findOneAndDelete({});
+        console.log('Question deleted!');
+    } catch (error) {
+        res.send(error);
+    }
+}
+
+module.exports={getQuestions,addQuestion,deleteQuestion};

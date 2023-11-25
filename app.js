@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const userRoutes = require('./routes/usersRouter');
 const questionRoutes = require('./routes/questionRouter');
 const bodyParser = require('body-parser');
+const Question = require('./models/Question');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
 const sess = require('./middlewares/auth');
@@ -38,15 +39,8 @@ app.use('/questions',questionRoutes);
     //}
   //});
 
-/*app.use(session({
-  secret: bcrypt.hash(req.u,10),
-  resave:false,
-  saveUninitialized: true,
-  cookie: { maxAge: 60000},
-}))
 
-app.use('/session', sess);
-*/
+
 app.set('view engine','pug');
 app.get('/register',(req,res)=>{
     res.render('register');
@@ -55,8 +49,9 @@ app.get('/register',(req,res)=>{
 app.get('/login',(req,res)=>{
     res.render('login');
 })
-app.get('/home',(req,res)=>{
-  res.render('home');
+app.get('/home',async (req,res)=>{
+  const questions = await Question.find().sort({ createdAt: 'desc' });
+  res.render('home',{questions:questions});
 })
 app.get('/questions',(req,res)=>{
   res.render('question');
