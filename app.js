@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const userRoutes = require('./routes/usersRouter');
 const questionRoutes = require('./routes/questionRouter');
+const reponseRoutes = require('./routes/reponseRouter');
 const bodyParser = require('body-parser');
 const Question = require('./models/Question');
 const bcrypt = require('bcrypt');
@@ -20,7 +21,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/forum")
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/users',userRoutes);
 app.use('/questions',questionRoutes);
-
+app.use('/reponses',reponseRoutes);
 //app.post('/users', async (req, res) => {
   //  try {
       // Create a new document using the FormData model
@@ -53,11 +54,16 @@ app.get('/home',async (req,res)=>{
   const questions = await Question.find().sort({ createdAt: 'desc' });
   res.render('home',{questions:questions});
 })
-app.get('/questions',async (req,res)=>{
-  const description = req.body.description;
-  console.log(req.body);
-  const question = await Question.find({description:description}).sort({ createdAt: 'desc' });
+app.get('/question',async (req,res)=>{
+  //const description = req.body.description;
+  const description = "hello yahya";
+  //console.log(req.body);
+  const question = await Question.findOne({description:description});
+  //console.log(question);
   const reponses = question.reponses;
+  console.log(reponses.date);
+  console.log(reponses.email);
+  console.log(typeof(reponses.description));
   res.render('question',{question:question,reponses:reponses});
 })
 

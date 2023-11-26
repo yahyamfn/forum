@@ -3,7 +3,7 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Home
+        title Question
         link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
         style.      
                 input[type=text]{
@@ -84,8 +84,8 @@ html(lang="en")
             a(href='/login',id='log') Logout/Login
             br
             p(class='desca')= `${question.description}`
-            form(action='/questions' method='POST')
-                input(type='text',id='quest',name='description',placeholder='Votre reponse ici ....')
+            form(action='/reponses' method='POST')
+                input(type='text',id='quest',name='descriptionReponse',placeholder='Votre reponse ici ....')
                 br
                 script. 
                     function refreshPage(){
@@ -96,7 +96,7 @@ html(lang="en")
                 input(type='submit',id='btn',value='Envoyer',onclick='refreshPage()')
             .container
                 .container2
-                    //each reponse in reponses
-                        p(class='date')=`${reponse.date.toJSON().substring(0,10)}          ${question.email}`
-                        p(class='description')= `${reponse.description}`
+                    p=`${reponses.date}`
+                        //p(class='date')=`${reponse.date}          ${question.email}`
+                        //p(class='description')= `${reponse.description}`
                     

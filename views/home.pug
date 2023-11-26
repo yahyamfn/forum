@@ -84,11 +84,16 @@ html(lang="en")
             .container
                 .container2
                     each question in questions
-                        form(action='/questions' method='POST')
+                        form(action='/reponses' method='POST')
                             p(class='date')=`${question.date.toJSON().substring(0,10)}          ${question.email}`
                             p(class='description')= `${question.description}`
+                            script. 
+                                function myFunction(){ 
+                                    document.location.href='/question';
+                                    }     
                             input(type='hidden',id='description',name='description',value='${question.description}')
-                            a(href="/questions" type='submit' class="reponses" id="reponses") Reponses
+                            input(type='submit',id='reponses',class="reponses",value='Reponses',onclick='myFunction()')
+                            //a(href="/reponses" type='submit' class="reponses" id="reponses" onclick="myFunction()") Reponses
                         //script.
                             document.addEventListener('DOMContentLoaded', function() {
                             var reponses = document.getElementById('reponses');
