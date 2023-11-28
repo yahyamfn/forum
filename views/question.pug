@@ -83,9 +83,10 @@ html(lang="en")
             a(href='/home',id='home') Home
             a(href='/login',id='log') Logout/Login
             br
-            p(class='desca')= `${question.description}`
-            form(action='/reponses' method='POST')
+            p(class='desca')= `${descriptionQuestion}`
+            form(action='/reponses/add' id='myForm' method='POST')
                 input(type='text',id='quest',name='descriptionReponse',placeholder='Votre reponse ici ....')
+                input(type='hidden',id='description',name='description',value=`${descriptionQuestion}`)
                 br
                 script. 
                     function refreshPage(){
@@ -93,10 +94,17 @@ html(lang="en")
                             window.location.reload();
                             }, 100);
                     }
+                    function checkLogin(){
+                        if(req.session === ''){
+                            // matbynch lih #myForm
+                        }
+                    }
                 input(type='submit',id='btn',value='Envoyer',onclick='refreshPage()')
             .container
                 .container2
-                    p=`${reponses.date}`
+                    each reponse in reponses
+                        p=`${reponse.date.toJSON().substring(0,10)}          ${reponse.email}`
+                        p=`${reponse.description}`
                         //p(class='date')=`${reponse.date}          ${question.email}`
                         //p(class='description')= `${reponse.description}`
                     

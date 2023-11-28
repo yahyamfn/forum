@@ -67,11 +67,23 @@ html(lang="en")
                 .reponses{
                     margin-left:84%;
                 }
-    body 
+                #reponses{
+                    margin-left:5px;
+                }
+                button{
+                    background:none!important;
+                    border:none; 
+                    color:#007bff;
+                    text-decoration:underline;
+                    padding:0!important;
+                    //border is optional
+                    border-bottom:1px solid #444; 
+                }
+    body        
         .container1
             a(href='/login',id='log') Logout/Login
             br
-            form(action='/questions' method='POST')
+            form(action='/questions' id='myForm' method='POST')
                 input(type='text',id='quest',name='description',placeholder='Votre question ici ....')
                 br
                 script. 
@@ -80,23 +92,20 @@ html(lang="en")
                             window.location.reload();
                             }, 100);
                     }
+                    function checkLogin(){
+                        if(req.session === ''){
+                            // matbynch lih #myForm
+                        }
+                    }
                 input(type='submit',id='btn',value='Envoyer',onclick='refreshPage()')
             .container
                 .container2
                     each question in questions
-                        form(action='/reponses' method='POST')
+                        form(action='/reponses' id='myForm' method='POST')
                             p(class='date')=`${question.date.toJSON().substring(0,10)}          ${question.email}`
                             p(class='description')= `${question.description}`
-                            script. 
-                                function myFunction(){ 
-                                    document.location.href='/question';
-                                    }     
-                            input(type='hidden',id='description',name='description',value='${question.description}')
-                            input(type='submit',id='reponses',class="reponses",value='Reponses',onclick='myFunction()')
-                            //a(href="/reponses" type='submit' class="reponses" id="reponses" onclick="myFunction()") Reponses
-                        //script.
-                            document.addEventListener('DOMContentLoaded', function() {
-                            var reponses = document.getElementById('reponses');
-                            reponses.href = ${question.reponsesLink}; 
-                            });
+                            input(type='hidden',id='date',name='date',value=`${question.date}`)
+                            input(type='hidden',id='email',name='email',value=`${question.email}`)
+                            input(type='hidden',id='description',name='description',value=`${question.description}`)
+                            button(type="submit" style="cursor: pointer;") Reponses
                     

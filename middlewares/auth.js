@@ -6,14 +6,14 @@ function auth(req,res){
     
 }
 
-router.get('/create-session', (req, res) => {
+router.get('/createSession', (req, res) => {
     req.session.user = {
       username: 'example_user',
       email: 'user@example.com',
     };
 });
 
-router.get('/getsession',(req,res)=>{
+router.get('/geSsession',(req,res)=>{
     const user = req.session.user;
   if (user) {
     res.json(user);
