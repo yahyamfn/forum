@@ -49,7 +49,8 @@ app.get('/question',async (req,res)=>{
   //const reponses = await Reponse.find({descriptionQuestion:descriptionQuestion});
   //res.render('question',{reponses:reponses,descriptionQuestion:descriptionQuestion});
   if(req.session.user){
-    res.redirect('/home');
+    const condition = true;
+    res.render('/question',{condition : condition,email:email});
   }else{
     res.redirect('/login');
   }

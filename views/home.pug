@@ -81,7 +81,10 @@ html(lang="en")
                 }
     body        
         .container1
-            a(href='/login',id='log') Logout/Login
+            if  `${condition}`
+                a(href='users/logout',id='log') Logout
+            else
+                a(href='/login',id='log') Login
             br
             form(action='/questions' id='myForm' method='POST')
                 input(type='text',id='quest',name='description',placeholder='Votre question ici ....')

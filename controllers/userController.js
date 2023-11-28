@@ -73,4 +73,9 @@ async function login(req,res){
 }
 
 
-module.exports={addUser,login};
+async function logout(req,res){
+        await req.session.destroy();
+        res.redirect('/login');
+    };
+
+module.exports={addUser,login,logout};

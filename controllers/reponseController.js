@@ -3,12 +3,12 @@ const Reponse = require('.././models/Reponse');
 
 async function addReponse(req,res){
     try {
-        //console.log(req.body);
+        console.log(req.body);
         const descriptionQuestion = req.body.description;
         //const questionDate = req.body.date;
         const descriptionReponse = req.body.descriptionReponse;
-        //const questionEmail = req.body.email;
-        //const reponseEmail = req.session.user.email;
+        const email = req.session.user.email;
+        console.log(email);
         const date = new Date();
         /*const reponse = {
             date:date,
@@ -19,7 +19,7 @@ async function addReponse(req,res){
         if(descriptionReponse === ""){
             res.send('Please enter a valid response !');
         }else{
-            const newReponse = await Reponse.create({date:date,email:req.session.user.email,description:descriptionReponse,questionDesc:descriptionQuestion});
+            const newReponse = await Reponse.create({date:date,email:email,description:descriptionReponse,questionDesc:descriptionQuestion});
             //console.log(newReponse);
             await newReponse.save();
             console.log('New response created !');

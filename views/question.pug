@@ -81,7 +81,10 @@ html(lang="en")
     body 
         .container1
             a(href='/home',id='home') Home
-            a(href='/login',id='log') Logout/Login
+            if  `${condition}`
+                a(href='users/logout',id='log') Logout
+            else
+                a(href='/login',id='log') Login
             br
             p(class='desca')= `${descriptionQuestion}`
             form(action='/reponses/add' id='myForm' method='POST')
