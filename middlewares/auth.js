@@ -1,31 +1,40 @@
+const express = require('express');
 const session = require('express-session');
-const router = require('express').Router();
-const bcrypt = require('bcrypt');
+const app = express();
 
-function auth(req,res){
-    
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true
+}));
+
+/*const login = (req,res)=>{
+  const { email } = req.body.email;
+  req.session.email = email;
 }
 
-router.get('/createSession', (req, res) => {
-    req.session.user = {
-      username: 'example_user',
-      email: 'user@example.com',
-    };
-});
+const logout = (req, res)=>{
+  req.session.destroy(err => {
+    if (err) {
+      console.error(err);
+    } else {
+      res.redirect('/login');
+    }
+  });
+}
 
-router.get('/geSsession',(req,res)=>{
-    const user = req.session.user;
-  if (user) {
-    res.json(user);
+const checkAuth = (req, res) => {
+  // Check if the user is authenticated
+  if (req.session) {
+    // If authenticated, add user information to locals
+    res.locals.isAuthenticated = true;
+    res.locals.email = req.session.email;
+    res.rendirect('home');
   } else {
-    res.send('Session not found');
+    // If not authenticated, set isAuthenticated to false
+    res.locals.isAuthenticated = false;
+    res.render('.././views/login.pug');
   }
-})
-
-router.post('/logout', (req, res) => {
-    req.session.destroy(() => {
-      res.send('Logout successful!');
-    });
-});
-
-module.exports=router;
+};
+*/
+//module.exports = ;

@@ -87,6 +87,7 @@ html(lang="en")
             form(action='/reponses/add' id='myForm' method='POST')
                 input(type='text',id='quest',name='descriptionReponse',placeholder='Votre reponse ici ....')
                 input(type='hidden',id='description',name='description',value=`${descriptionQuestion}`)
+                //input(type='hidden',id='description',name='emailQuestion',value=`${descriptionQuestion}`)
                 br
                 script. 
                     function refreshPage(){
@@ -103,7 +104,7 @@ html(lang="en")
             .container
                 .container2
                     each reponse in reponses
-                        p=`${reponse.date.toJSON().substring(0,10)}          ${reponse.email}`
+                        p=`${reponse.date.toJSON().substring(0,10)}ㅤ${reponse.email}`
                         p=`${reponse.description}`
                         //p(class='date')=`${reponse.date}          ${question.email}`
                         //p(class='description')= `${reponse.description}`

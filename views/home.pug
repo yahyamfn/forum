@@ -102,7 +102,7 @@ html(lang="en")
                 .container2
                     each question in questions
                         form(action='/reponses' id='myForm' method='POST')
-                            p(class='date')=`${question.date.toJSON().substring(0,10)}          ${question.email}`
+                            p(class='date')=`${question.date.toJSON().substring(0,10)}ㅤ${question.email}`
                             p(class='description')= `${question.description}`
                             input(type='hidden',id='date',name='date',value=`${question.date}`)
                             input(type='hidden',id='email',name='email',value=`${question.email}`)

@@ -55,11 +55,14 @@ async function login(req,res){
             if(!validPass){
                 res.send('Invalid email or password!');
             }else{
+                req.session.user = user;
+                //req.session.authorized = true;
                 console.log('Connected!');
-                console.log(user);
-                //req.session.user =user;
                 //console.log(req.session.user);
+                //req.isAuthenticated();
                 res.redirect('/home');
+                //res.render('home');
+                //req.session.email = email;
             }
         }else{
             res.send('Invalid email or password!');

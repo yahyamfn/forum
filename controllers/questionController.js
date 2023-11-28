@@ -18,7 +18,7 @@ async function addQuestion(req,res){
           //  console.error();
         //}else{
             var date = new Date();
-            const newQuestion = await Question.create({date:date,nom:question.nom,email:question.email,description:question.description});
+            const newQuestion = await Question.create({date:date,nom:question.nom,email:req.session.user.email,description:question.description});
             await newQuestion.save();
             console.log('New question created!');
         //}
